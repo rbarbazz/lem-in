@@ -6,7 +6,7 @@
 #    By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/19 10:38:52 by rbarbazz          #+#    #+#              #
-#    Updated: 2018/07/30 23:56:20 by rbarbazz         ###   ########.fr        #
+#    Updated: 2018/08/03 17:36:34 by rbarbazz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = lem-in
 
 SRC_PATH = src
 
-SRC_NAME =	main.c
+SRC_NAME =	main.c clear.c parsing.c
 
 OBJ_PATH = obj
 

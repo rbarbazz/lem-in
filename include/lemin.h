@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/31 00:00:37 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/01 02:50:22 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/03 18:24:18 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,29 @@
 # define LEMIN_H
 # include "libft.h"
 
-typedef struct		s_room
+typedef struct		s_map
 {
-	int				num;
-	char			*name;
-	struct s_room	*next;
-}					t_room;
+	char			*line;
+	struct s_map	*next;
+}					t_map;
 
 typedef struct		s_lem
 {
-	int				nb_ants;
-	t_room			*start_room;
+	t_map			*map;
 }					t_lem;
+
+t_lem				*get_lem(void);
 
 /*
 ** parsing
 */
 
-t_lem		*get_lem(void);
+int					store_map(void);
+
+/*
+** clearing memory
+*/
+
+void				free_lem(void);
 
 #endif
