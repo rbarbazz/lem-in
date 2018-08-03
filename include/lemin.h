@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/31 00:00:37 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/03 18:24:18 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/03 20:16:27 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ t_lem				*get_lem(void);
 */
 
 int					store_map(void);
+
+/*
+** display
+*/
+
+void				print_map(void);
 
 /*
 ** clearing memory

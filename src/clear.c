@@ -12,10 +12,24 @@
 
 #include "lemin.h"
 
-void	free_lem(void)
+static void	free_map(t_map *map)
+{
+	t_map	*tmp;
+	
+	tmp = map;
+	while (map)
+	{
+		tmp = map;
+		map = map->next;
+		ft_strdel(&tmp->line);
+		ft_memdel((void**)&tmp);
+	}
+}
+
+void		free_lem(void)
 {
 	t_lem	*lem;
 
 	lem = get_lem();
-	ft_strdel(&lem->map);
+	free_map(lem->map);
 }
