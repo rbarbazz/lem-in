@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 13:22:39 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/04 16:48:09 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/04 18:20:43 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,11 @@ static void	init_lem(void)
 int			main(void)
 {
 	init_lem();
-	if (store_map())
+	if (store_map() || parse_map())
+	{
+		free_lem();
 		return (ft_printf("ERROR"));
+	}
 	print_map();
 	free_lem();
 	return (0);

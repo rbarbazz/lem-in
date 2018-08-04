@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/03 17:27:35 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/04 17:15:19 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/04 18:55:50 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ static void		add_node(char *line)
 	new->next = NULL;
 }
 
+/*
+** doesn't store comments
+*/
+
 static int		check_comment(char *line)
 {
 	if (ft_strcmp("##start", line) == 1)
@@ -42,6 +46,10 @@ static int		check_comment(char *line)
 		return (1);
 	return (0);
 }
+
+/*
+** stop storing if an empty line is found
+*/
 
 static int		check_empty(char *line)
 {
