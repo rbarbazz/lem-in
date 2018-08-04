@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/31 00:00:37 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/03 20:16:27 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/04 16:30:12 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct		s_map
 typedef struct		s_lem
 {
 	t_map			*map;
+	int				nb_ants;
 }					t_lem;
 
 t_lem				*get_lem(void);

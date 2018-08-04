@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/03 17:27:35 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/03 20:30:04 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/04 17:15:19 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,43 @@ static int		check_comment(char *line)
 	return (0);
 }
 
+static int		check_empty(char *line)
+{
+	int	print;
+	int	i;
+
+	i = 0;
+	print = 0;
+	if (!line || !line[0])
+		return (1);
+	while (line[i])
+	{
+		if (ft_isprint(line[i]))
+			print = 1;
+		i++;
+	}
+	if (!print)
+		return (1);
+	return (0);
+}
+
 int				store_map(void)
 {
 	t_lem	*lem;
+	int		empty;
 	char	*line;
 
 	lem = get_lem();
+	empty = 0;
 	while (get_next_line(STDIN_FILENO, &line) == 1)
 	{
-		if (!check_comment(line))
+		if (check_empty(line))
+			empty = 1;
+		if (!check_comment(line) && !empty)
 			add_node(line);
 		ft_strdel(&line);
 	}
+	if (!lem->map)
+		return (1);
 	return (0);
 }
