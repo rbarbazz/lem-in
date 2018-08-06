@@ -1,3 +1,4 @@
 *.o
 obj/
 lem-in
+*.dSYM
