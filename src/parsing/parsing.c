@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/04 16:27:04 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/06 19:41:46 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/07 01:09:27 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,11 @@
 ** get nb of ants and check if value is a number, > 0 and < UINT_MAX
 */
 
-static int	get_nb_ants(void)
+static int	get_nb_ants(t_lem	*lem)
 {
-	t_lem				*lem;
 	int					i;
 	unsigned long long	res;
 
-	lem = get_lem();
 	i = 0;
 	while (lem->map->line[i])
 	{
@@ -36,17 +34,12 @@ static int	get_nb_ants(void)
 	return (0);
 }
 
-static int	get_rooms(void)
-{
-	t_lem	*lem;
-
-	lem = get_lem();
-	return (0);
-}
-
 int			parse_map(void)
 {
-	if (get_nb_ants() || get_rooms())
+	t_lem				*lem;
+
+	lem = get_lem();
+	if (get_nb_ants(lem) || get_rooms(lem))
 		return (1);
 	return (0);
 }

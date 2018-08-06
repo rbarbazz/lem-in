@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/31 00:00:37 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/06 19:26:02 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/07 01:09:22 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ t_lem					*get_lem(void);
 
 int						store_map(void);
 int						parse_map(void);
+int						get_rooms(t_lem	*lem);
 
 /*
 ** display
