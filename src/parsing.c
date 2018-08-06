@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/04 16:27:04 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/04 18:54:34 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/06 19:41:46 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static int	get_nb_ants(void)
 	int					i;
 	unsigned long long	res;
 
-	i = 0;
 	lem = get_lem();
+	i = 0;
 	while (lem->map->line[i])
 	{
 		if (!ft_isdigit(lem->map->line[i]))
@@ -36,9 +36,17 @@ static int	get_nb_ants(void)
 	return (0);
 }
 
+static int	get_rooms(void)
+{
+	t_lem	*lem;
+
+	lem = get_lem();
+	return (0);
+}
+
 int			parse_map(void)
 {
-	if (get_nb_ants())
+	if (get_nb_ants() || get_rooms())
 		return (1);
 	return (0);
 }

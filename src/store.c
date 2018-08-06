@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/03 17:27:35 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/04 18:55:50 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/06 19:18:45 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void		add_node(char *line)
 }
 
 /*
-** doesn't store comments
+** doesn't store comments nor rooms with names starting with L
 */
 
 static int		check_comment(char *line)
@@ -42,7 +42,7 @@ static int		check_comment(char *line)
 		return (0);
 	else if (ft_strcmp("##end", line) == 1)
 		return (0);
-	else if (line[0] == '#')
+	else if (line[0] == '#' || line[0] == 'L')
 		return (1);
 	return (0);
 }
