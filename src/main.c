@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 13:22:39 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/07 02:09:36 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/07 13:01:58 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static void	init_lem(void)
 	lem = get_lem();
 	lem->map = NULL;
 	lem->room = NULL;
+	lem->start = 0;
+	lem->end = 0;
 }
 
 int			main(void)

@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/03 17:27:35 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/06 19:18:45 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/07 13:49:46 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ static void		add_node(char *line)
 
 static int		check_comment(char *line)
 {
-	if (ft_strcmp("##start", line) == 1)
+	if (!ft_strcmp("##start", line))
 		return (0);
-	else if (ft_strcmp("##end", line) == 1)
+	else if (!ft_strcmp("##end", line))
 		return (0);
 	else if (line[0] == '#' || line[0] == 'L')
 		return (1);
