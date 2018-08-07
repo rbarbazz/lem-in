@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 13:22:39 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/07 00:22:36 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/07 02:09:36 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_lem		*get_lem(void)
 {
 	static t_lem	lem;
 
-	return(&lem);
+	return (&lem);
 }
 
 static void	init_lem(void)
