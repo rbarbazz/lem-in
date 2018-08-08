@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 01:08:30 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/07 14:11:52 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/08 09:59:05 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int			get_rooms(t_lem *lem)
 	t_map	*tmp;
 	char	**splited;
 
-	tmp = lem->map->next;
+	tmp = lem->map;
 	while (tmp)
 	{
 		splited = strsplit_whitespace(tmp->line);
@@ -118,6 +118,7 @@ int			get_rooms(t_lem *lem)
 		add_node(splited[0], lem);
 		strstr_free(splited);
 		tmp = tmp->next;
+		free_node_map(lem);
 	}
 	if (check_start_end(lem))
 		return (1);

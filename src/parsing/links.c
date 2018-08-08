@@ -1,45 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   links.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/19 13:22:39 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/08 09:04:59 by rbarbazz         ###   ########.fr       */
+/*   Created: 2018/08/08 08:58:21 by rbarbazz          #+#    #+#             */
+/*   Updated: 2018/08/08 09:09:02 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-t_lem		*get_lem(void)
+int	get_links(t_lem *lem)
 {
-	static t_lem	lem;
+	t_lem	*tmp;
 
-	return (&lem);
-}
-
-static void	init_lem(void)
-{
-	t_lem	*lem;
-
-	lem = get_lem();
-	lem->map = NULL;
-	lem->room = NULL;
-	lem->link = NULL;
-	lem->start = 0;
-	lem->end = 0;
-}
-
-int			main(void)
-{
-	init_lem();
-	if (store_map() || parse_map())
-	{
-		free_lem();
-		return (ft_printf("ERROR"));
-	}
-	print_map();
-	free_lem();
+	tmp = lem;
 	return (0);
 }
