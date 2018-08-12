@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 01:08:30 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/12 20:01:29 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/12 21:11:41 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static void	add_node(char *name, t_lem *lem)
 	new->prev = tmp;
 }
 
-
 /*
 ** check if the room exists and is correctly formatted
 */
@@ -43,9 +42,7 @@ static int	check_room_syntax(char **splited)
 	if (splited && splited[0] && !splited[1])
 	{
 		if (!ft_strcmp("##start", splited[0]) || !ft_strcmp("##end", splited[0]))
-		{
 			return (0);
-		}
 		strstr_free(splited);
 		return (1);
 	}
