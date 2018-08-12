@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/03 20:13:53 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/07 14:07:24 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/12 18:54:28 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ void	print_map(void)
 {
 	t_lem	*lem;
 	t_room	*tmp;
+	t_link	*tmp1;
 
 	lem = get_lem();
 	tmp = lem->room;
+	tmp1 = lem->link;
 	ft_printf("%u\n", lem->nb_ants);
 	while (tmp)
 	{
@@ -28,5 +30,10 @@ void	print_map(void)
 			ft_printf("##end\n");
 		ft_printf("%s\n", tmp->name);
 		tmp = tmp->next;
+	}
+	while (tmp1)
+	{
+		ft_printf("%s-%s\n", tmp1->link0, tmp1->link1);
+		tmp1 = tmp1->next;
 	}
 }
