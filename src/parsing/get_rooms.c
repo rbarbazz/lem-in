@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rooms.c                                            :+:      :+:    :+:   */
+/*   get_rooms.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 01:08:30 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/08 10:11:19 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/12 20:01:29 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,6 @@ static void	add_node(char *name, t_lem *lem)
 	new->prev = tmp;
 }
 
-static t_room	*remove_node(t_room *tmp, t_lem	*lem)
-{
-	t_room	*new;
-
-	ft_strdel(&tmp->name);
-	if (!tmp->prev)
-	{
-		new = tmp->next;
-		lem->room = new;
-		ft_memdel((void**)&tmp);
-		return (new);
-	}
-	tmp->prev->next = tmp->next;
-	tmp->next->prev = tmp->prev;
-	new = tmp->prev;
-	ft_memdel((void**)&tmp);
-	return (new);
-}
 
 /*
 ** check if the room exists and is correctly formatted
@@ -77,30 +59,8 @@ static int	check_room_syntax(char **splited)
 }
 
 /*
-** check if one start and one end are present
+** breaks when the last room with a matching syntax was found
 */
-
-static int	check_start_end(t_lem *lem)
-{
-	t_room	*tmp;
-
-	tmp = lem->room;
-	while (tmp)
-	{
-		if (tmp->name[0] == '#' && (!tmp->next || tmp->next->name[0] == '#'))
-			return (1);
-		if (!ft_strcmp("##start", tmp->name) && (tmp->next->start = 1))
-			lem->start++;
-		if (!ft_strcmp("##end", tmp->name) && (tmp->next->end = 1))
-			lem->end++;
-		if (tmp->name[0] == '#')
-			tmp = remove_node(tmp, lem);
-		tmp = tmp->next;
-	}
-	if (lem->start != 1 || lem->end != 1)
-		return (1);
-	return (0);
-}
 
 int			get_rooms(t_lem *lem)
 {
@@ -110,9 +70,10 @@ int			get_rooms(t_lem *lem)
 	tmp = lem->map;
 	while (tmp)
 	{
-		if ((splited = strsplit_whitespace(tmp->line)) && check_room_syntax(splited) == 1)
+		if ((splited = strsplit_whitespace(tmp->line)) &&\
+		check_room_syntax(splited) == 1)
 			break ;
-		if (check_room_syntax(splited) == 2)
+		if (check_room_syntax(splited) == 2 || check_duplicate(splited))
 			return (1);
 		add_node(splited[0], lem);
 		strstr_free(splited);
