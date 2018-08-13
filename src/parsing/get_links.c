@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   links.c                                            :+:      :+:    :+:   */
+/*   get_links.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 08:58:21 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/12 18:53:29 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/13 10:36:16 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int		get_links(t_lem *lem)
 			break ;
 		splited = ft_strsplit(tmp->line, '-');
 		add_node(splited, lem);
+		strstr_free(splited);
 		ret++;
 		tmp = tmp->next;
 	}

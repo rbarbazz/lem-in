@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 01:08:30 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/12 21:11:41 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/13 12:02:26 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ static int	check_room_syntax(char **splited)
 {
 	if (splited && splited[0] && !splited[1])
 	{
-		if (!ft_strcmp("##start", splited[0]) || !ft_strcmp("##end", splited[0]))
+		if (!ft_strcmp("##start", splited[0]) ||\
+		!ft_strcmp("##end", splited[0]))
 			return (0);
 		strstr_free(splited);
 		return (1);
@@ -49,6 +50,7 @@ static int	check_room_syntax(char **splited)
 	if (!splited[2] || splited[3] || !is_number(splited[1]) ||\
 	!is_number(splited[2]))
 	{
+		ft_printf("dab");
 		strstr_free(splited);
 		return (2);
 	}
