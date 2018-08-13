@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 01:08:30 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/13 12:02:26 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/14 01:15:53 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,23 @@ static void	add_node(char *name, t_lem *lem)
 
 static int	check_room_syntax(char **splited)
 {
-	if (splited && splited[0] && !splited[1])
+	if (!splited[0])
 	{
-		if (!ft_strcmp("##start", splited[0]) ||\
-		!ft_strcmp("##end", splited[0]))
-			return (0);
 		strstr_free(splited);
 		return (1);
 	}
-	if (!splited[2] || splited[3] || !is_number(splited[1]) ||\
+	else if (!splited[1])
+	{
+		if (!ft_strcmp("##start", splited[0]) ||\
+		!ft_strcmp("##end", splited[0]))
+			return (3);
+		return (2);
+	}
+	else if (!splited[2] || splited[3] || !is_number(splited[1]) ||\
 	!is_number(splited[2]))
 	{
-		ft_printf("dab");
 		strstr_free(splited);
-		return (2);
+		return (4);
 	}
 	return (0);
 }
@@ -69,11 +72,16 @@ int			get_rooms(t_lem *lem)
 	tmp = lem->map;
 	while (tmp)
 	{
-		if ((splited = strsplit_whitespace(tmp->line)) &&\
-		check_room_syntax(splited) == 1)
-			break ;
-		if (check_room_syntax(splited) == 2 || check_duplicate(splited))
+		;
+		if (!(splited = strsplit_whitespace(tmp->line)) || check_room_syntax(splited) == 1)
 			return (1);
+		if (check_room_syntax(splited) == 4)
+			return (1);
+		if (check_room_syntax(splited) == 2)
+			break ;
+		if (!check_room_syntax(splited))
+			if (check_duplicate(splited))
+				return (1);
 		add_node(splited[0], lem);
 		strstr_free(splited);
 		tmp = tmp->next;
