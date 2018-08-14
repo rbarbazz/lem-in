@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 01:08:30 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/14 01:15:53 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/14 02:31:59 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	check_room_syntax(char **splited)
 	!is_number(splited[2]))
 	{
 		strstr_free(splited);
-		return (4);
+		return (1);
 	}
 	return (0);
 }
@@ -73,15 +73,13 @@ int			get_rooms(t_lem *lem)
 	while (tmp)
 	{
 		;
-		if (!(splited = strsplit_whitespace(tmp->line)) || check_room_syntax(splited) == 1)
-			return (1);
-		if (check_room_syntax(splited) == 4)
+		if (!(splited = strsplit_whitespace(tmp->line)) || check_room_syntax(splited) == 1 || (!check_room_syntax(splited) && check_duplicate(splited)))
 			return (1);
 		if (check_room_syntax(splited) == 2)
+		{
+			strstr_free(splited);
 			break ;
-		if (!check_room_syntax(splited))
-			if (check_duplicate(splited))
-				return (1);
+		}
 		add_node(splited[0], lem);
 		strstr_free(splited);
 		tmp = tmp->next;

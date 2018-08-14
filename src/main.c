@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 13:22:39 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/08 09:04:59 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/14 02:48:22 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int			main(void)
 	if (store_map() || parse_map())
 	{
 		free_lem();
-		return (ft_printf("ERROR"));
+		return (ft_printf("ERROR\n"));
 	}
 	print_map();
 	free_lem();

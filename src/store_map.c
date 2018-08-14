@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/03 17:27:35 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/12 20:53:49 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/14 02:47:11 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,15 @@ static void		add_node(char *line)
 	new->next = NULL;
 }
 
+static int		check_bigl_spaces(char *line)
+{
+	if (line && line[0] && (line[0] == 'L' || !ft_isprint(line[0])))
+		return (1);
+	return (0);
+}
+
 /*
-** doesn't store comments nor rooms with names starting with L
+** doesn't store comments
 */
 
 static int		check_comment(char *line)
@@ -42,31 +49,7 @@ static int		check_comment(char *line)
 		return (0);
 	else if (!ft_strcmp("##end", line))
 		return (0);
-	else if (line[0] == '#' || line[0] == 'L')
-		return (1);
-	return (0);
-}
-
-/*
-** stop storing if an empty line is found
-*/
-
-static int		check_empty(char *line)
-{
-	int	print;
-	int	i;
-
-	i = 0;
-	print = 0;
-	if (!line || !line[0])
-		return (1);
-	while (line[i])
-	{
-		if (ft_isprint(line[i]))
-			print = 1;
-		i++;
-	}
-	if (!print)
+	else if (line[0] == '#')
 		return (1);
 	return (0);
 }
@@ -74,16 +57,14 @@ static int		check_empty(char *line)
 int				store_map(void)
 {
 	t_lem	*lem;
-	int		empty;
 	char	*line;
 
 	lem = get_lem();
-	empty = 0;
 	while (get_next_line(STDIN_FILENO, &line) == 1)
 	{
-		if (check_empty(line))
-			empty = 1;
-		if (!check_comment(line) && !empty)
+		if (check_bigl_spaces(line))
+			return (1);
+		if (!check_comment(line))
 			add_node(line);
 		ft_strdel(&line);
 	}
