@@ -6,13 +6,13 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/12 19:47:25 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/14 02:31:32 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/15 13:22:38 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static t_room	*remove_node(t_room *tmp, t_lem	*lem)
+static t_room	*remove_node(t_room *tmp, t_lem *lem)
 {
 	t_room	*new;
 

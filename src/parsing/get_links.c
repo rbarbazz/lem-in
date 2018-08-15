@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 08:58:21 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/13 10:36:16 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/15 13:26:39 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static int	check_link(char *line)
 ** returns the number of valid links found
 */
 
-int		get_links(t_lem *lem)
+int			get_links(t_lem *lem)
 {
 	t_map	*tmp;
 	int		ret;

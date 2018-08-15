@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 01:08:30 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/14 02:31:59 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/15 13:26:11 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,9 @@ int			get_rooms(t_lem *lem)
 	tmp = lem->map;
 	while (tmp)
 	{
-		;
-		if (!(splited = strsplit_whitespace(tmp->line)) || check_room_syntax(splited) == 1 || (!check_room_syntax(splited) && check_duplicate(splited)))
+		if (!(splited = strsplit_whitespace(tmp->line)) ||\
+		check_room_syntax(splited) == 1 || (!check_room_syntax(splited) &&\
+		check_duplicate(splited)))
 			return (1);
 		if (check_room_syntax(splited) == 2)
 		{
