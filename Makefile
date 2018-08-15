@@ -6,7 +6,7 @@
 #    By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/19 10:38:52 by rbarbazz          #+#    #+#              #
-#    Updated: 2018/08/12 20:04:12 by rbarbazz         ###   ########.fr        #
+#    Updated: 2018/08/15 14:12:51 by rbarbazz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ SRC_PATH = src
 
 SRC_NAME =	main.c clear.c store_map.c display.c\
 			parsing/parsing.c parsing/get_rooms.c parsing/verif_rooms.c\
-			parsing/get_links.c
+			parsing/get_links.c \
+			algo/algo.c
 
 OBJ_PATH = obj
 
@@ -47,7 +48,7 @@ $(NAME): $(LIB) $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(LDFLAGS) $(LDLIBS) $(LIB) -o $@
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
-	@mkdir -p obj/parsing
+	@mkdir -p obj/parsing obj/algo
 	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
 
 norme:

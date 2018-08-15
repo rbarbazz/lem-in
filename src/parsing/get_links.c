@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 08:58:21 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/15 13:26:39 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/15 13:51:19 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,11 @@ static int	check_name(char **splited)
 	}
 	return (match);
 }
+
+/*
+** a '-' is a link so a map cannot have a '-' in its name
+** making it impossible to have a case like 'keep-carry-on'
+*/
 
 static int	check_link(char *line)
 {

@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/31 00:00:37 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/14 02:31:40 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/15 14:13:31 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,12 @@ int						get_rooms(t_lem	*lem);
 int						check_start_end(t_lem *lem);
 int						check_duplicate(char **splited);
 int						get_links(t_lem *lem);
+
+/*
+** algo
+*/
+
+int						algo(void);
 
 /*
 ** display
