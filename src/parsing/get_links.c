@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 08:58:21 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/15 15:20:50 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/15 17:17:24 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	add_node(char **splited, t_lem *lem)
 	if (!(new = (t_link*)ft_memalloc(sizeof(t_link))))
 	{
 		free_lem();
-		exit (1);
+		exit(1);
 	}
 	if (!lem->link)
 		lem->link = new;

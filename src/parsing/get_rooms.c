@@ -6,13 +6,13 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 01:08:30 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/15 15:20:59 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/15 17:52:34 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static void	add_node(char *name, t_lem *lem)
+static void	add_node(char **splited, t_lem *lem)
 {
 	t_room	*new;
 	t_room	*tmp;
@@ -23,15 +23,19 @@ static void	add_node(char *name, t_lem *lem)
 	if (!(new = (t_room*)ft_memalloc(sizeof(t_room))))
 	{
 		free_lem();
-		exit (1);
+		exit(1);
 	}
 	if (!lem->room)
 		lem->room = new;
 	else
 		tmp->next = new;
-	new->name = ft_strdup(name);
+	new->name = ft_strdup(splited[0]);
 	new->start = 0;
 	new->end = 0;
+	if (splited[1])
+		new->x = atoull(splited[1]);
+	if (splited[1] && splited[2])
+		new->y = atoull(splited[2]);
 	new->next = NULL;
 	new->prev = tmp;
 }
@@ -63,6 +67,21 @@ static int	check_room_syntax(char **splited)
 	return (0);
 }
 
+static void	get_start_end(t_lem *lem)
+{
+	t_room	*tmp;
+
+	tmp = lem->room;
+	while (tmp)
+	{
+		if (tmp->start)
+			lem->start = ft_strdup(tmp->name);
+		if (tmp->end)
+			lem->end = ft_strdup(tmp->name);
+		tmp = tmp->next;
+	}
+}
+
 /*
 ** breaks when the last room with a matching syntax was found
 */
@@ -84,12 +103,13 @@ int			get_rooms(t_lem *lem)
 			strstr_free(splited);
 			break ;
 		}
-		add_node(splited[0], lem);
+		add_node(splited, lem);
 		strstr_free(splited);
 		tmp = tmp->next;
 		free_node_map(lem);
 	}
 	if (check_start_end(lem))
 		return (1);
+	get_start_end(lem);
 	return (0);
 }

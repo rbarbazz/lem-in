@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/12 19:47:25 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/15 13:22:38 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/15 17:49:12 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,21 +57,24 @@ int				check_duplicate(char **splited)
 int				check_start_end(t_lem *lem)
 {
 	t_room	*tmp;
+	int		start_end[2];
 
 	tmp = lem->room;
+	start_end[0] = 0;
+	start_end[1] = 0;
 	while (tmp)
 	{
 		if (tmp->name[0] == '#' && (!tmp->next || tmp->next->name[0] == '#'))
 			return (1);
 		if (!ft_strcmp("##start", tmp->name) && (tmp->next->start = 1))
-			lem->start++;
+			start_end[0]++;
 		if (!ft_strcmp("##end", tmp->name) && (tmp->next->end = 1))
-			lem->end++;
+			start_end[1]++;
 		if (tmp->name[0] == '#')
 			tmp = remove_node(tmp, lem);
 		tmp = tmp->next;
 	}
-	if (lem->start != 1 || lem->end != 1)
+	if (start_end[0] != 1 || start_end[1] != 1)
 		return (1);
 	return (0);
 }

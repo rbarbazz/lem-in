@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/31 00:00:37 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/15 15:14:47 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/15 17:32:45 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct			s_room
 	char				*name;
 	int					start;
 	int					end;
+	unsigned long long	x;
+	unsigned long long	y;
 	struct s_room		*prev;
 	struct s_room		*next;
 }						t_room;
@@ -39,8 +41,8 @@ typedef struct			s_map
 
 typedef struct			s_lem
 {
-	int					start;
-	int					end;
+	char				*start;
+	char				*end;
 	t_map				*map;
 	unsigned int		nb_ants;
 	t_room				*room;
