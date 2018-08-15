@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 01:08:30 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/15 13:26:11 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/15 15:20:59 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ static void	add_node(char *name, t_lem *lem)
 	while (tmp && tmp->next)
 		tmp = tmp->next;
 	if (!(new = (t_room*)ft_memalloc(sizeof(t_room))))
-		return ;
+	{
+		free_lem();
+		exit (1);
+	}
 	if (!lem->room)
 		lem->room = new;
 	else

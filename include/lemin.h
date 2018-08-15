@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/31 00:00:37 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/15 14:13:31 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/15 15:14:47 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ typedef struct			s_link
 {
 	char				*link0;
 	char				*link1;
+	struct s_link		*prev;
 	struct s_link		*next;
 }						t_link;
 

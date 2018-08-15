@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/03 17:27:35 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/14 02:47:11 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/15 15:21:19 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ static void		add_node(char *line)
 	while (tmp && tmp->next)
 		tmp = tmp->next;
 	if (!(new = (t_map*)ft_memalloc(sizeof(t_map))))
-		return ;
+	{
+		free_lem();
+		exit (1);
+	}
 	if (!lem->map)
 		lem->map = new;
 	else

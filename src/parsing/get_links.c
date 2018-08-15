@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 08:58:21 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/15 13:51:19 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/15 15:20:50 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ static void	add_node(char **splited, t_lem *lem)
 	while (tmp && tmp->next)
 		tmp = tmp->next;
 	if (!(new = (t_link*)ft_memalloc(sizeof(t_link))))
-		return ;
+	{
+		free_lem();
+		exit (1);
+	}
 	if (!lem->link)
 		lem->link = new;
 	else
@@ -29,6 +32,7 @@ static void	add_node(char **splited, t_lem *lem)
 	new->link0 = ft_strdup(splited[0]);
 	new->link1 = ft_strdup(splited[1]);
 	new->next = NULL;
+	new->prev = tmp;
 }
 
 static int	check_name(char **splited)
