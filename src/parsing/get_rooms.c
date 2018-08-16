@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 01:08:30 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/16 14:24:45 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/16 16:10:25 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	check_room_syntax(char **splited)
 		return (2);
 	}
 	else if (!splited[2] || splited[3] || !is_number(splited[1]) ||\
-	!is_number(splited[2]))
+	!is_number(splited[2]) || ft_strchr(splited[0], '-'))
 	{
 		strstr_free(splited);
 		return (1);
