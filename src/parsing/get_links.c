@@ -6,18 +6,45 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 08:58:21 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/16 12:53:19 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/16 15:31:59 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static void	add_link(char **splited, t_lem *lem)
+static void	add_link(t_room *room, t_room *room_link)
 {
-	char	 **tmp;
-	t_lem	*dab;
-	dab = lem;
-	tmp = splited;
+	t_link	*new;
+	t_link	*tmp;
+
+	tmp = room->link;
+	while (tmp && tmp->next)
+		tmp = tmp->next;
+	if (!(new = (t_link*)ft_memalloc(sizeof(t_link))))
+	{
+		free_lem();
+		exit(1);
+	}
+	if (!room->link)
+		room->link = new;
+	else
+		tmp->next = new;
+	new->room_link = room_link;
+}
+
+static void	find_links(char **splited, t_lem *lem)
+{
+	t_room	*tmp;
+	t_room	*tmp1;
+
+	tmp = lem->room;
+	tmp1 = lem->room;
+	while (tmp && ft_strcmp(splited[0], tmp->name) != 0)
+		tmp = tmp->next;
+	while (tmp1 && ft_strcmp(splited[1], tmp1->name) != 0)
+		tmp1 = tmp1->next;
+	add_link(tmp, tmp1);
+	add_link(tmp1, tmp);
 }
 
 static int	check_name(char **splited)
@@ -81,7 +108,7 @@ int			get_links(t_lem *lem)
 		if (check_link(tmp->line))
 			break ;
 		splited = ft_strsplit(tmp->line, '-');
-		add_link(splited, lem);
+		find_links(splited, lem);
 		strstr_free(splited);
 		ret++;
 		tmp = tmp->next;

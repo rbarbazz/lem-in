@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/31 00:00:37 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/16 12:48:40 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/16 15:15:13 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,18 @@
 # define LEMIN_H
 # include "libft.h"
 
+typedef struct			s_link
+{
+		struct s_room	*room_link;
+		struct s_link	*next;
+}						t_link;
+
 typedef struct			s_room
 {
 	char				*name;
 	int					start;
 	int					end;
-	struct s_room		*links;
+	struct s_link		*link;
 	struct s_room		*prev;
 	struct s_room		*next;
 
