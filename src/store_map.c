@@ -6,11 +6,34 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/03 17:27:35 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/15 17:16:54 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/16 12:30:00 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+static void		add_node_full(char *line)
+{
+	t_map	*new;
+	t_map	*tmp;
+	t_lem	*lem;
+
+	lem = get_lem();
+	tmp = lem->full_map;
+	while (tmp && tmp->next)
+		tmp = tmp->next;
+	if (!(new = (t_map*)ft_memalloc(sizeof(t_map))))
+	{
+		free_lem();
+		exit(1);
+	}
+	if (!lem->full_map)
+		lem->full_map = new;
+	else
+		tmp->next = new;
+	new->line = ft_strdup(line);
+	new->next = NULL;
+}
 
 static void		add_node(char *line)
 {
@@ -57,6 +80,12 @@ static int		check_comment(char *line)
 	return (0);
 }
 
+/*
+** store two versions of the map
+** one is untouched
+** one is without comments
+*/
+
 int				store_map(void)
 {
 	t_lem	*lem;
@@ -69,6 +98,7 @@ int				store_map(void)
 			return (1);
 		if (!check_comment(line))
 			add_node(line);
+		add_node_full(line);
 		ft_strdel(&line);
 	}
 	if (!lem->map)

@@ -6,33 +6,18 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 08:58:21 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/15 17:17:24 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/16 12:53:19 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static void	add_node(char **splited, t_lem *lem)
+static void	add_link(char **splited, t_lem *lem)
 {
-	t_link	*new;
-	t_link	*tmp;
-
-	tmp = lem->link;
-	while (tmp && tmp->next)
-		tmp = tmp->next;
-	if (!(new = (t_link*)ft_memalloc(sizeof(t_link))))
-	{
-		free_lem();
-		exit(1);
-	}
-	if (!lem->link)
-		lem->link = new;
-	else
-		tmp->next = new;
-	new->link0 = ft_strdup(splited[0]);
-	new->link1 = ft_strdup(splited[1]);
-	new->next = NULL;
-	new->prev = tmp;
+	char	 **tmp;
+	t_lem	*dab;
+	dab = lem;
+	tmp = splited;
 }
 
 static int	check_name(char **splited)
@@ -77,6 +62,8 @@ static int	check_link(char *line)
 	return (ret);
 }
 
+
+
 /*
 ** returns the number of valid links found
 */
@@ -94,7 +81,7 @@ int			get_links(t_lem *lem)
 		if (check_link(tmp->line))
 			break ;
 		splited = ft_strsplit(tmp->line, '-');
-		add_node(splited, lem);
+		add_link(splited, lem);
 		strstr_free(splited);
 		ret++;
 		tmp = tmp->next;

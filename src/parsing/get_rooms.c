@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 01:08:30 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/15 17:52:34 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/16 12:49:40 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,7 @@ static void	add_node(char **splited, t_lem *lem)
 	new->name = ft_strdup(splited[0]);
 	new->start = 0;
 	new->end = 0;
-	if (splited[1])
-		new->x = atoull(splited[1]);
-	if (splited[1] && splited[2])
-		new->y = atoull(splited[2]);
+	new->links = NULL;
 	new->next = NULL;
 	new->prev = tmp;
 }
