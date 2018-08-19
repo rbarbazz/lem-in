@@ -6,11 +6,15 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/03 16:49:25 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/16 12:49:04 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/19 20:59:14 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+/*
+** frees the first node of lem->map
+*/
 
 void		free_node_map(t_lem *lem)
 {
@@ -25,6 +29,7 @@ void		free_node_map(t_lem *lem)
 static void	free_room(t_room *room)
 {
 	t_room	*tmp;
+	t_link	*tmp1;
 
 	tmp = room;
 	while (room)
@@ -32,6 +37,13 @@ static void	free_room(t_room *room)
 		tmp = room;
 		room = room->next;
 		ft_strdel(&tmp->name);
+		tmp1 = tmp->link;
+		while (tmp->link)
+		{
+			tmp1 = tmp->link;
+			tmp->link = tmp->link->next;
+			ft_memdel((void**)&tmp1);
+		}
 		ft_memdel((void**)&tmp);
 	}
 }
