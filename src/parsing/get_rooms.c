@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 01:08:30 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/16 16:10:25 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/20 18:38:27 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ static void	add_node(char **splited, t_lem *lem)
 	new->link = NULL;
 	new->next = NULL;
 	new->prev = tmp;
+	new->visit = 0;
+	new->layer = 0;
 }
 
 /*

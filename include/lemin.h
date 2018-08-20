@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/31 00:00:37 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/16 15:15:13 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/20 18:39:08 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 typedef struct			s_link
 {
-		struct s_room	*room_link;
-		struct s_link	*next;
+	struct s_room		*room_link;
+	struct s_link		*next;
 }						t_link;
 
 typedef struct			s_room
@@ -28,7 +28,8 @@ typedef struct			s_room
 	struct s_link		*link;
 	struct s_room		*prev;
 	struct s_room		*next;
-
+	int					visit;
+	int					layer;
 }						t_room;
 
 typedef struct			s_map
