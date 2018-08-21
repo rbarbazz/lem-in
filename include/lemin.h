@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/31 00:00:37 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/21 10:37:48 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/21 20:01:04 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ typedef struct			s_room
 	int					end;
 	t_link				*link;
 	struct s_room		*next_queue;
+	struct s_room		*parent;
 	int					visit;
-	int					layer;
 }						t_room;
 
 typedef struct			s_map
@@ -68,12 +68,15 @@ int						get_links(t_lem *lem);
 */
 
 int						algo(void);
+void					remove_from_queue(t_lem *lem);
+void					add_to_queue(t_room *node, t_room *parent);
 
 /*
 ** display
 */
 
 void					print_map(void);
+void					print_path(void);
 
 /*
 ** clearing memory

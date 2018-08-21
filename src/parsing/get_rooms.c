@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 01:08:30 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/21 10:58:34 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/21 19:57:42 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static void	init_node(t_room *new)
 	new->link = NULL;
 	new->next = NULL;
 	new->next_queue = NULL;
+	new->parent = NULL;
 	new->visit = 0;
-	new->layer = 0;
 }
 
 static void	add_node(char **splited, t_lem *lem)

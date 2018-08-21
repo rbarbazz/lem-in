@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 13:22:39 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/21 12:57:19 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/21 20:01:22 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int			main(int argc, char **argv)
 		free_lem();
 		return (ft_printf("ERROR\n"));
 	}
-	//print_map();
+	print_map();
+	print_path();
 	free_lem();
 	return (0);
 }

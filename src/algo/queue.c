@@ -1,44 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display.c                                          :+:      :+:    :+:   */
+/*   queue.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/03 20:13:53 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/21 20:06:45 by rbarbazz         ###   ########.fr       */
+/*   Created: 2018/08/21 19:53:04 by rbarbazz          #+#    #+#             */
+/*   Updated: 2018/08/21 19:57:47 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void	print_path(void)
+void	remove_from_queue(t_lem *lem)
 {
-	t_lem	*lem;
 	t_room	*tmp;
 
-	lem = get_lem();
-	tmp = lem->start;
-	while (tmp)
-	{
-		ft_printf("%s", tmp->name);
-		tmp = tmp->parent;
-		if (tmp)
-			ft_printf(" -> ");
-	}
-	ft_printf("\n");
+	tmp = lem->queue;
+	lem->queue = lem->queue->next_queue;
+	tmp->next_queue = NULL;
 }
 
-void	print_map(void)
+/*
+** adds a node to the end of the queue
+*/
+
+void	add_to_queue(t_room *node, t_room *parent)
 {
-	t_lem	*lem;
-	t_map	*tmp;
+	t_lem		*lem;
+	t_room		*tmp;
 
 	lem = get_lem();
-	tmp = lem->full_map;
-	while (tmp)
+	tmp = lem->queue;
+	node->parent = parent;
+	if (!lem->queue)
+		lem->queue = node;
+	else
 	{
-		ft_printf("%s\n", tmp->line);
-		tmp = tmp->next;
+		while (tmp && tmp->next_queue)
+			tmp = tmp->next_queue;
+		tmp->next_queue = node;
 	}
 }
