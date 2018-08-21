@@ -6,11 +6,22 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 01:08:30 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/20 18:38:27 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/21 10:58:34 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+static void	init_node(t_room *new)
+{
+	new->start = 0;
+	new->end = 0;
+	new->link = NULL;
+	new->next = NULL;
+	new->next_queue = NULL;
+	new->visit = 0;
+	new->layer = 0;
+}
 
 static void	add_node(char **splited, t_lem *lem)
 {
@@ -30,13 +41,8 @@ static void	add_node(char **splited, t_lem *lem)
 	else
 		tmp->next = new;
 	new->name = ft_strdup(splited[0]);
-	new->start = 0;
-	new->end = 0;
-	new->link = NULL;
-	new->next = NULL;
 	new->prev = tmp;
-	new->visit = 0;
-	new->layer = 0;
+	init_node(new);
 }
 
 /*
@@ -74,9 +80,9 @@ static void	get_start_end(t_lem *lem)
 	while (tmp)
 	{
 		if (tmp->start)
-			lem->start = ft_strdup(tmp->name);
+			lem->start = tmp;
 		if (tmp->end)
-			lem->end = ft_strdup(tmp->name);
+			lem->end = tmp;
 		tmp = tmp->next;
 	}
 }

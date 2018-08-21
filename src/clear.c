@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/03 16:49:25 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/19 21:07:24 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/21 10:38:34 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,5 @@ void		free_lem(void)
 	lem = get_lem();
 	free_full_map(lem->full_map);
 	free_map(lem->map);
-	ft_strdel(&lem->start);
-	ft_strdel(&lem->end);
 	free_room(lem->room);
 }

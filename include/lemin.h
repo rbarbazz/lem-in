@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/31 00:00:37 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/20 18:39:08 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/21 10:37:48 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@ typedef struct			s_link
 typedef struct			s_room
 {
 	char				*name;
-	int					start;
-	int					end;
-	struct s_link		*link;
 	struct s_room		*prev;
 	struct s_room		*next;
+	int					start;
+	int					end;
+	t_link				*link;
+	struct s_room		*next_queue;
 	int					visit;
 	int					layer;
 }						t_room;
@@ -42,10 +43,11 @@ typedef struct			s_lem
 {
 	t_map				*full_map;
 	t_map				*map;
-	char				*start;
-	char				*end;
+	t_room				*start;
+	t_room				*end;
 	unsigned int		nb_ants;
 	t_room				*room;
+	t_room				*queue;
 }						t_lem;
 
 t_lem					*get_lem(void);
