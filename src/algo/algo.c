@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 14:11:55 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/21 11:50:01 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/21 12:56:29 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,44 @@ static void	add_to_queue(t_room *node)
 }
 
 /*
-** check if neighbours were visited yet, if not add them to the queue
+** check if neighbours were visited yet or if they are in the queue already
+** if not, add them to the queue
 */
 
 static void	check_neighbours(t_room *queue)
 {
-	t_link *tmp;
+	t_link	*tmp;
+	t_room	*tmp1;
+	int		match;
 
 	tmp = queue->link;
 	while (tmp)
 	{
-		if (!tmp->room_link->visit)
+		tmp1 = queue;
+		match = 0;
+		while (tmp1)
+		{
+			if (!ft_strcmp(tmp1->name, tmp->room_link->name))
+				match = 1;
+			tmp1 = tmp1->next_queue;
+		}
+		if (!tmp->room_link->visit && !match)
 			add_to_queue(tmp->room_link);
 		tmp = tmp->next;
 	}
+}
+
+static void	print_queue(t_room *queue)
+{
+	t_room	*tmp;
+
+	tmp = queue;
+	while (tmp)
+	{
+		ft_printf("%s ", tmp->name);
+		tmp = tmp->next_queue;
+	}
+	ft_printf("\n");
 }
 
 int			algo(void)
@@ -65,7 +89,7 @@ int			algo(void)
 
 	lem = get_lem();
 	add_to_queue(lem->end);
-	ft_printf("HEAD OF QUEUE %s\n", lem->queue->name);
+	print_queue(lem->queue);
 	while (lem->queue)
 	{
 		if (lem->queue->start)
@@ -74,7 +98,7 @@ int			algo(void)
 		check_neighbours(lem->queue);
 		remove_from_queue(lem);
 		if (lem->queue)
-			ft_printf("HEAD OF QUEUE %s\n", lem->queue->name);
+			print_queue(lem->queue);
 	}
 	return (0);
 }

@@ -6,17 +6,28 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 08:58:21 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/21 11:44:22 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/21 12:28:33 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+/*
+** if link does not exist yet, adds room_link to room
+*/
 
 static void	add_link(t_room *room, t_room *room_link)
 {
 	t_link	*new;
 	t_link	*tmp;
 
+	tmp = room->link;
+	while (tmp)
+	{
+		if (!ft_strcmp(room_link->name, tmp->room_link->name))
+			return ;
+		tmp = tmp->next;
+	}
 	tmp = room->link;
 	while (tmp && tmp->next)
 		tmp = tmp->next;
@@ -88,8 +99,6 @@ static int	check_link(char *line)
 	strstr_free(splited);
 	return (ret);
 }
-
-
 
 /*
 ** returns the number of valid links found
