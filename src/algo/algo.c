@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 14:11:55 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/21 12:56:29 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/21 16:33:36 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ static void	remove_from_queue(t_lem *lem)
 ** adds a node to the end of the queue
 */
 
-static void	add_to_queue(t_room *node)
+static void	add_to_queue(t_room *node, int layer)
 {
-	t_lem	*lem;
-	t_room	*tmp;
+	t_lem		*lem;
+	t_room		*tmp;
 
 	lem = get_lem();
 	tmp = lem->queue;
+	node->layer = layer++;
 	if (!lem->queue)
 		lem->queue = node;
 	else
@@ -65,7 +66,7 @@ static void	check_neighbours(t_room *queue)
 			tmp1 = tmp1->next_queue;
 		}
 		if (!tmp->room_link->visit && !match)
-			add_to_queue(tmp->room_link);
+			add_to_queue(tmp->room_link, queue->layer + 1);
 		tmp = tmp->next;
 	}
 }
@@ -77,7 +78,7 @@ static void	print_queue(t_room *queue)
 	tmp = queue;
 	while (tmp)
 	{
-		ft_printf("%s ", tmp->name);
+		ft_printf("%i%s ", tmp->layer, tmp->name);
 		tmp = tmp->next_queue;
 	}
 	ft_printf("\n");
@@ -88,7 +89,7 @@ int			algo(void)
 	t_lem	*lem;
 
 	lem = get_lem();
-	add_to_queue(lem->end);
+	add_to_queue(lem->end, 0);
 	print_queue(lem->queue);
 	while (lem->queue)
 	{
@@ -100,5 +101,5 @@ int			algo(void)
 		if (lem->queue)
 			print_queue(lem->queue);
 	}
-	return (0);
+	return (1);
 }
