@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 13:13:26 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/23 18:27:43 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/23 19:59:41 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void		remove_longer_path(t_lem *lem)
 ** adds a node to the current path
 */
 
-static t_link	*add_node(t_link *parent, t_path *path)
+static t_link	*add_node(t_room *parent, t_path *path)
 {
 	t_link	*new;
 	t_link	*tmpl;
@@ -52,7 +52,7 @@ static t_link	*add_node(t_link *parent, t_path *path)
 		free_lem();
 		exit(1);
 	}
-	new->room_link = parent->room_link;
+	new->room_link = parent;
 	if (!path->start)
 		path->start = new;
 	else
@@ -74,6 +74,7 @@ static int		find_path(t_path *path, t_lem *lem)
 
 	end_path = lem->start;
 	size = 0;
+	add_node(lem->start, path);
 	while (!end_path->parent->room_link->end)
 	{
 		tmpl = end_path->parent;
@@ -84,12 +85,13 @@ static int		find_path(t_path *path, t_lem *lem)
 		else
 		{
 			size++;
-			tmpl = add_node(tmpl, path);
+			tmpl = add_node(tmpl->room_link, path);
 			tmpl->room_link->visit = 1;
 		}
 		end_path = tmpl->room_link;
 	}
 	path->size = size;
+	add_node(lem->end, path);
 	return (0);
 }
 

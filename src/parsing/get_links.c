@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 08:58:21 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/23 11:52:36 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/23 19:35:33 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@ static void	find_links(char **splited, t_lem *lem)
 	add_link(tmp1, tmp);
 }
 
+/*
+** check if both names match with known rooms
+*/
+
 static int	check_name(char **splited)
 {
 	t_lem	*lem;
@@ -88,14 +92,16 @@ static int	check_link(char *line)
 {
 	char	**splited;
 	int		ret;
+	int		count;
 
 	ret = 0;
-	if ((splited = strsplit_whitespace(line)) && splited[1])
+	count = count_char(line, '-');
+	if (((splited = strsplit_whitespace(line)) && splited[1]))
 		ret = 1;
 	strstr_free(splited);
 	if ((splited = ft_strsplit(line, '-')) && (!splited[1] || splited[2]))
 		ret = 1;
-	if (!ret && check_name(splited) != 2)
+	if (count != 1 || (!ret && check_name(splited) != 2))
 		ret = 1;
 	strstr_free(splited);
 	return (ret);
