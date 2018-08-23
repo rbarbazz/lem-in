@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 14:11:55 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/23 12:18:44 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/23 16:51:53 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,15 @@ static void	print_queue(t_room *queue)
 	}
 	ft_printf("\n\n");
 }
+
+/*
+** add the end to the queue
+** work on head of the queue
+** mark as visited
+** check for neighbours and adds them to the queue
+** remove head from queue
+** repeat
+*/
 
 int			algo(void)
 {

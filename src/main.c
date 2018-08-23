@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 13:22:39 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/23 13:00:33 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/23 15:44:12 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,18 @@ static void	init_lem(void)
 	lem->room = NULL;
 	lem->queue = NULL;
 	lem->path = NULL;
+}
+
+void	clear_visit(t_room *room)
+{
+	t_room	*tmpr;
+
+	tmpr = room;
+	while (tmpr)
+	{
+		tmpr->visit = 0;
+		tmpr = tmpr->next;
+	}
 }
 
 int			main(int argc, char **argv)

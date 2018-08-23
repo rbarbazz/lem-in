@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/03 20:13:53 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/23 13:18:07 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/23 16:18:28 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,16 @@ void			print_path(void)
 	ft_printf("\n");
 	while (tmpp)
 	{
+		ft_printf("%s -> ", lem->start->name);
 		tmpl = tmpp->start;
 		while (tmpl)
 		{
-			ft_printf("%s -> ", tmpl->room_link->name);
+			ft_printf("%s ", tmpl->room_link->name);
 			tmpl = tmpl->next;
+			if (tmpl)
+			ft_printf("-> ");
 		}
+		ft_printf("-> %s", lem->end->name);
 		ft_printf("\n");
 		tmpp = tmpp->next;
 	}

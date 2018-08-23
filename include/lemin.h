@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/31 00:00:37 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/23 12:46:57 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/23 17:00:14 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void					add_parent(t_room *room, t_room *parent);
 void					print_map(void);
 void					save_path(void);
 void					print_path(void);
+void					clear_visit(t_room *room);
 
 /*
 ** clearing memory
@@ -93,5 +94,6 @@ void					print_path(void);
 
 void					free_lem(void);
 void					free_node_map(t_lem *lem);
+void					clear_one_path(t_path *path);
 
 #endif

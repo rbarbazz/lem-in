@@ -6,11 +6,25 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/04 16:27:04 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/12 18:24:04 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/23 16:56:11 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+/*
+** frees the first node of lem->map
+*/
+
+void		free_node_map(t_lem *lem)
+{
+	t_map	*tmp;
+
+	tmp = lem->map;
+	lem->map = lem->map->next;
+	ft_strdel(&tmp->line);
+	ft_memdel((void**)&tmp);
+}
 
 /*
 ** get nb of ants and check if value is a number, > 0 and < UINT_MAX
