@@ -1,49 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display.c                                          :+:      :+:    :+:   */
+/*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/03 20:13:53 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/23 13:18:07 by rbarbazz         ###   ########.fr       */
+/*   Created: 2018/08/23 13:13:26 by rbarbazz          #+#    #+#             */
+/*   Updated: 2018/08/23 13:18:19 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void			print_path(void)
+static void	add_path(t_lem *lem)
 {
-	t_lem	*lem;
+	t_path	*new;
 	t_path	*tmpp;
-	t_link	*tmpl;
 
-	lem = get_lem();
 	tmpp = lem->path;
-	ft_printf("\n");
-	while (tmpp)
-	{
-		tmpl = tmpp->start;
-		while (tmpl)
-		{
-			ft_printf("%s -> ", tmpl->room_link->name);
-			tmpl = tmpl->next;
-		}
-		ft_printf("\n");
+	while (tmpp && tmpp->next)
 		tmpp = tmpp->next;
+	if (!(new = (t_path*)ft_memalloc(sizeof(t_path))))
+	{
+		free_lem();
+		exit(1);
+	}
+	if (!tmpp)
+		tmpp = new;
+	else
+		tmpp->next = new;
+}
+
+static void		clear_visit(t_room *room)
+{
+	t_room	*tmpr;
+
+	tmpr = room;
+	while (tmpr)
+	{
+		tmpr->visit = 0;
+		tmpr = tmpr->next;
 	}
 }
 
-void	print_map(void)
+void			save_path(void)
 {
 	t_lem	*lem;
-	t_map	*tmp;
+	t_link	*pstart;
 
 	lem = get_lem();
-	tmp = lem->full_map;
-	while (tmp)
+	pstart = lem->start->parent;
+	clear_visit(lem->room);
+	while (pstart)
 	{
-		ft_printf("%s\n", tmp->line);
-		tmp = tmp->next;
+		add_path(lem);
+		pstart = pstart->next;
 	}
 }

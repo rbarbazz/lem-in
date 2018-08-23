@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 14:11:55 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/21 19:57:58 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/23 12:18:44 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,39 +19,48 @@
 
 static void	check_neighbours(t_room *queue)
 {
-	t_link	*tmp;
-	t_room	*tmp1;
-	int		match;
+	t_link	*tmpl;
+	t_room	*tmpr;
+	t_room	*match;
 
-	tmp = queue->link;
-	while (tmp)
+	tmpl = queue->link;
+	while (tmpl)
 	{
-		tmp1 = queue;
-		match = 0;
-		while (tmp1)
+		tmpr = queue;
+		match = NULL;
+		while (tmpr)
 		{
-			if (!ft_strcmp(tmp1->name, tmp->room_link->name))
-				match = 1;
-			tmp1 = tmp1->next_queue;
+			if (!ft_strcmp(tmpr->name, tmpl->room_link->name))
+				match = tmpr;
+			tmpr = tmpr->next_queue;
 		}
-		if (!tmp->room_link->visit && !match)
-			add_to_queue(tmp->room_link, queue);
-		tmp = tmp->next;
+		if (!tmpl->room_link->visit && !match)
+			add_to_queue(tmpl->room_link, queue);
+		if (!tmpl->room_link->visit && match)
+			add_parent(match, queue);
+		tmpl = tmpl->next;
 	}
 }
 
 static void	print_queue(t_room *queue)
 {
-	t_room	*tmp;
+	t_room	*tmpr;
+	t_link	*tmpl;
 
-	tmp = queue;
-	while (tmp)
+	tmpr = queue;
+	while (tmpr)
 	{
-		if (tmp->parent)
-			ft_printf("%s_%s ", tmp->name, tmp->parent->name);
-		tmp = tmp->next_queue;
+		ft_printf("%s_", tmpr->name);
+		tmpl = tmpr->parent;
+		while (tmpl)
+		{
+			ft_printf("%s", tmpl->room_link->name);
+			tmpl = tmpl->next;
+		}
+		ft_printf(" ");
+		tmpr = tmpr->next_queue;
 	}
-	ft_printf("\n");
+	ft_printf("\n\n");
 }
 
 int			algo(void)

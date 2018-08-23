@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 08:58:21 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/21 12:28:33 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/23 11:52:36 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static void	add_link(t_room *room, t_room *room_link)
 	else
 		tmp->next = new;
 	new->room_link = room_link;
+	new->next = NULL;
 }
 
 static void	find_links(char **splited, t_lem *lem)

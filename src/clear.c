@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/03 16:49:25 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/21 10:38:34 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/23 12:28:17 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,30 @@ void		free_node_map(t_lem *lem)
 
 static void	free_room(t_room *room)
 {
-	t_room	*tmp;
-	t_link	*tmp1;
+	t_room	*tmpr;
+	t_link	*tmpl;
 
-	tmp = room;
+	tmpr = room;
 	while (room)
 	{
-		tmp = room;
+		tmpr = room;
 		room = room->next;
-		ft_strdel(&tmp->name);
-		tmp1 = tmp->link;
-		while (tmp->link)
+		ft_strdel(&tmpr->name);
+		tmpl = tmpr->link;
+		while (tmpr->link)
 		{
-			tmp1 = tmp->link;
-			tmp->link = tmp->link->next;
-			ft_memdel((void**)&tmp1);
+			tmpl = tmpr->link;
+			tmpr->link = tmpr->link->next;
+			ft_memdel((void**)&tmpl);
 		}
-		ft_memdel((void**)&tmp);
+		tmpl = tmpr->parent;
+		while (tmpr->parent)
+		{
+			tmpl = tmpr->parent;
+			tmpr->parent = tmpr->parent->next;
+			ft_memdel((void**)&tmpl);
+		}
+		ft_memdel((void**)&tmpr);
 	}
 }
 
