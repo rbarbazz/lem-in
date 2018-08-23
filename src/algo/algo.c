@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 14:11:55 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/23 16:51:53 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/23 18:30:07 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,27 +42,6 @@ static void	check_neighbours(t_room *queue)
 	}
 }
 
-static void	print_queue(t_room *queue)
-{
-	t_room	*tmpr;
-	t_link	*tmpl;
-
-	tmpr = queue;
-	while (tmpr)
-	{
-		ft_printf("%s_", tmpr->name);
-		tmpl = tmpr->parent;
-		while (tmpl)
-		{
-			ft_printf("%s", tmpl->room_link->name);
-			tmpl = tmpl->next;
-		}
-		ft_printf(" ");
-		tmpr = tmpr->next_queue;
-	}
-	ft_printf("\n\n");
-}
-
 /*
 ** add the end to the queue
 ** work on head of the queue
@@ -78,7 +57,6 @@ int			algo(void)
 
 	lem = get_lem();
 	add_to_queue(lem->end, NULL);
-	print_queue(lem->queue);
 	while (lem->queue)
 	{
 		if (lem->queue->start)
@@ -86,8 +64,6 @@ int			algo(void)
 		lem->queue->visit = 1;
 		check_neighbours(lem->queue);
 		remove_from_queue(lem);
-		if (lem->queue)
-			print_queue(lem->queue);
 	}
 	return (1);
 }

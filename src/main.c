@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 13:22:39 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/23 15:44:12 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/23 18:07:52 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,23 @@ t_lem		*get_lem(void)
 	static t_lem	lem;
 
 	return (&lem);
+}
+
+void		get_shortest_size(t_lem *lem)
+{
+	t_path	*tmpp;
+	int		shortest;
+
+	tmpp = lem->path;
+	shortest = tmpp->size;
+	tmpp = tmpp->next;
+	while (tmpp)
+	{
+		if (tmpp->size < shortest)
+			shortest = tmpp->size;
+		tmpp = tmpp->next;
+	}
+	lem->shortest = shortest;
 }
 
 static void	init_lem(void)
@@ -31,18 +48,7 @@ static void	init_lem(void)
 	lem->room = NULL;
 	lem->queue = NULL;
 	lem->path = NULL;
-}
-
-void	clear_visit(t_room *room)
-{
-	t_room	*tmpr;
-
-	tmpr = room;
-	while (tmpr)
-	{
-		tmpr->visit = 0;
-		tmpr = tmpr->next;
-	}
+	lem->shortest = 0;
 }
 
 int			main(int argc, char **argv)

@@ -5,89 +5,52 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/03 16:49:25 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/23 17:06:31 by rbarbazz         ###   ########.fr       */
+/*   Created: 2018/08/23 17:28:26 by rbarbazz          #+#    #+#             */
+/*   Updated: 2018/08/23 17:30:07 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static void free_path(t_path *path)
-{
-	t_path	*tmpp;
+/*
+** frees the first node of lem->map
+*/
 
-	while (path)
-	{
-		tmpp = path;
-		path = path->next;
-		clear_one_path(tmpp);
-	}
+void		free_node_map(t_lem *lem)
+{
+	t_map	*tmp;
+
+	tmp = lem->map;
+	lem->map = lem->map->next;
+	ft_strdel(&tmp->line);
+	ft_memdel((void**)&tmp);
 }
 
+/*
+** clears visit flag after algo for the path phase
+*/
 
-static void	free_room(t_room *room)
+void		clear_visit(t_room *room)
 {
 	t_room	*tmpr;
-	t_link	*tmpl;
 
 	tmpr = room;
-	while (room)
+	while (tmpr)
 	{
-		tmpr = room;
-		room = room->next;
-		ft_strdel(&tmpr->name);
-		tmpl = tmpr->link;
-		while (tmpr->link)
-		{
-			tmpl = tmpr->link;
-			tmpr->link = tmpr->link->next;
-			ft_memdel((void**)&tmpl);
-		}
-		tmpl = tmpr->parent;
-		while (tmpr->parent)
-		{
-			tmpl = tmpr->parent;
-			tmpr->parent = tmpr->parent->next;
-			ft_memdel((void**)&tmpl);
-		}
-		ft_memdel((void**)&tmpr);
+		tmpr->visit = 0;
+		tmpr = tmpr->next;
 	}
 }
 
-static void	free_full_map(t_map *map)
+void		clear_one_path(t_path *path)
 {
-	t_map	*tmp;
+	t_link	*tmpl;
 
-	while (map)
+	while (path->start)
 	{
-		tmp = map;
-		map = map->next;
-		ft_strdel(&tmp->line);
-		ft_memdel((void**)&tmp);
+		tmpl = path->start;
+		path->start = path->start->next;
+		ft_memdel((void**)&tmpl);
 	}
-}
-
-static void	free_map(t_map *map)
-{
-	t_map	*tmp;
-
-	tmp = map;
-	while (map)
-	{
-		tmp = map;
-		map = map->next;
-		ft_strdel(&tmp->line);
-		ft_memdel((void**)&tmp);
-	}
-}
-
-void		free_lem(void)
-{
-	t_lem	*lem;
-
-	lem = get_lem();
-	free_full_map(lem->full_map);
-	free_map(lem->map);
-	free_room(lem->room);
-	free_path(lem->path);
+	ft_memdel((void**)&path);
 }

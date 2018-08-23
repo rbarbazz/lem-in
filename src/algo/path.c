@@ -6,11 +6,38 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 13:13:26 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/23 17:08:05 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/23 18:27:43 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+static void		remove_longer_path(t_lem *lem)
+{
+	t_path	*tmpp;
+	t_path	*save;
+
+	tmpp = lem->path;
+	get_shortest_size(lem);
+	while (tmpp)
+	{
+		save = tmpp->next;
+		if (tmpp->size > lem->shortest)
+		{
+			if (!tmpp->prev)
+				lem->path = tmpp->next;
+			else
+				tmpp->prev->next = tmpp->next;
+			clear_one_path(tmpp);
+		}
+		tmpp = save;
+	}
+}
+
+
+/*
+** adds a node to the current path
+*/
 
 static t_link	*add_node(t_link *parent, t_path *path)
 {
@@ -33,12 +60,20 @@ static t_link	*add_node(t_link *parent, t_path *path)
 	return (new);
 }
 
+/*
+** tries to find a path amongst the network of room
+** if they are related it means they have a path from end to start
+** if they have been visited they are already in use for another path
+*/
+
 static int		find_path(t_path *path, t_lem *lem)
 {
 	t_room	*end_path;
 	t_link	*tmpl;
+	int		size;
 
 	end_path = lem->start;
+	size = 0;
 	while (!end_path->parent->room_link->end)
 	{
 		tmpl = end_path->parent;
@@ -48,25 +83,14 @@ static int		find_path(t_path *path, t_lem *lem)
 			return (1);
 		else
 		{
+			size++;
 			tmpl = add_node(tmpl, path);
 			tmpl->room_link->visit = 1;
 		}
 		end_path = tmpl->room_link;
 	}
+	path->size = size;
 	return (0);
-}
-
-void		clear_one_path(t_path *path)
-{
-	t_link	*tmpl;
-
-	while (path->start)
-	{
-		tmpl = path->start;
-		path->start = path->start->next;
-		ft_memdel((void**)&tmpl);
-	}
-	ft_memdel((void**)&path);
 }
 
 /*
@@ -86,8 +110,10 @@ static void		add_path(t_lem *lem)
 		free_lem();
 		exit(1);
 	}
+	new->size = 0;
 	new->start = NULL;
 	new->next = NULL;
+	new->prev = tmpp;
 	if (find_path(new, lem))
 	{
 		clear_one_path(new);
@@ -117,4 +143,5 @@ void			save_path(void)
 		add_path(lem);
 		pstart = pstart->next;
 	}
+	remove_longer_path(lem);
 }

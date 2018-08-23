@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/31 00:00:37 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/23 17:00:14 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/23 18:16:09 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef struct			s_room
 typedef struct			s_path
 {
 	t_link				*start;
+	int					size;
+	struct s_path		*prev;
 	struct s_path		*next;
 }						t_path;
 
@@ -55,6 +57,7 @@ typedef struct			s_lem
 	t_room				*room;
 	t_room				*queue;
 	t_path				*path;
+	int					shortest;
 }						t_lem;
 
 t_lem					*get_lem(void);
@@ -69,6 +72,7 @@ int						get_rooms(t_lem	*lem);
 int						check_start_end(t_lem *lem);
 int						check_duplicate(char **splited);
 int						get_links(t_lem *lem);
+void					get_shortest_size(t_lem *lem);
 
 /*
 ** algo
