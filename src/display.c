@@ -6,13 +6,13 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/03 20:13:53 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/23 19:59:57 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/25 16:11:36 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void			print_path(void)
+void	print_path(void)
 {
 	t_lem	*lem;
 	t_path	*tmpp;
@@ -29,7 +29,7 @@ void			print_path(void)
 			ft_printf("%s ", tmpl->room_link->name);
 			tmpl = tmpl->next;
 			if (tmpl)
-			ft_printf("-> ");
+				ft_printf("-> ");
 		}
 		ft_printf("\n");
 		tmpp = tmpp->next;

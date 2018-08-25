@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear.c                                            :+:      :+:    :+:   */
+/*   final_clear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/03 16:49:25 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/23 17:06:31 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/25 16:12:23 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static void free_path(t_path *path)
+static void	free_path(t_path *path)
 {
 	t_path	*tmpp;
 
@@ -23,7 +23,6 @@ static void free_path(t_path *path)
 		clear_one_path(tmpp);
 	}
 }
-
 
 static void	free_room(t_room *room)
 {

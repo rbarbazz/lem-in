@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/21 19:53:04 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/23 12:12:40 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/25 16:18:00 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void	add_parent(t_room *room, t_room *parent)
 	t_link	*tmp;
 
 	tmp = room->parent;
-	if (!parent)
-		return ;
 	while (tmp)
 	{
 		if (!ft_strcmp(parent->name, tmp->room_link->name))
@@ -62,7 +60,8 @@ void	add_to_queue(t_room *node, t_room *parent)
 
 	lem = get_lem();
 	tmp = lem->queue;
-	add_parent(node, parent);
+	if (parent)
+		add_parent(node, parent);
 	if (!lem->queue)
 		lem->queue = node;
 	else

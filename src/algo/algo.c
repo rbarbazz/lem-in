@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 14:11:55 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/23 18:30:07 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/25 16:18:14 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	check_neighbours(t_room *queue)
 		}
 		if (!tmpl->room_link->visit && !match)
 			add_to_queue(tmpl->room_link, queue);
-		if (!tmpl->room_link->visit && match)
+		if (!tmpl->room_link->visit && match && queue)
 			add_parent(match, queue);
 		tmpl = tmpl->next;
 	}

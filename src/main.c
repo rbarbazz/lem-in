@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 13:22:39 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/23 18:07:52 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/25 17:00:46 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static void	init_lem(void)
 	lem->queue = NULL;
 	lem->path = NULL;
 	lem->shortest = 0;
+	lem->nb_path = 0;
 }
 
 int			main(int argc, char **argv)
@@ -64,6 +65,7 @@ int			main(int argc, char **argv)
 	print_map();
 	save_path();
 	print_path();
+	print_ants();
 	free_lem();
 	return (0);
 }

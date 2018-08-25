@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 13:13:26 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/23 19:59:41 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/25 16:12:57 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static void		remove_longer_path(t_lem *lem)
 		tmpp = save;
 	}
 }
-
 
 /*
 ** adds a node to the current path
