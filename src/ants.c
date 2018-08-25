@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 16:21:57 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/25 17:53:52 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/25 18:28:10 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,17 @@ static void	get_count_path(t_lem *lem)
 static void	assign_ant_first_room(t_lem *lem)
 {
 	t_path	*tmpp;
+	int		i;
 
+	i = lem->nb_path - 1;
 	tmpp = lem->path;
 	tmpp->start->next->ant = 1;
 	tmpp = tmpp->next;
 	while (tmpp)
 	{
-		if (lem->nb_ants /
-		tmpp->start->next->ant = ;
+		if (!(lem->nb_ants % lem->nb_path))
+			tmpp->start->next->ant = lem->nb_ants + 1 - (i * (lem->nb_ants / lem->nb_path));
+		i--;
 		tmpp = tmpp->next;
 	}
 }
