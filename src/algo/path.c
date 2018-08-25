@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 13:13:26 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/25 17:04:26 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/25 20:22:19 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ static void		add_path(t_lem *lem)
 		exit(1);
 	}
 	new->size = 0;
+	new->ant_max = 0;
 	new->start = NULL;
 	new->next = NULL;
 	new->prev = tmpp;

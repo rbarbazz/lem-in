@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/31 00:00:37 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/25 17:03:27 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/25 21:27:06 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,28 @@
 typedef struct			s_link
 {
 	struct s_room		*room_link;
-	int					ant;
+	unsigned int		ant;
 	struct s_link		*next;
 }						t_link;
 
 typedef struct			s_room
 {
 	char				*name;
-	struct s_room		*prev;
-	struct s_room		*next;
 	int					start;
 	int					end;
 	t_link				*link;
-	struct s_room		*next_queue;
 	t_link				*parent;
 	int					visit;
+	struct s_room		*next_queue;
+	struct s_room		*prev;
+	struct s_room		*next;
 }						t_room;
 
 typedef struct			s_path
 {
 	t_link				*start;
 	int					size;
+	unsigned int		ant_max;
 	struct s_path		*prev;
 	struct s_path		*next;
 }						t_path;
