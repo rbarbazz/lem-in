@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 13:13:26 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/25 16:12:57 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/25 17:04:26 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static t_link	*add_node(t_room *parent, t_path *path)
 		exit(1);
 	}
 	new->room_link = parent;
+	new->ant = 0;
 	if (!path->start)
 		path->start = new;
 	else

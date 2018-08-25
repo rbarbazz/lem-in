@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/03 20:13:53 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/25 16:11:36 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/25 17:22:09 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	print_path(void)
 		ft_printf("\n");
 		tmpp = tmpp->next;
 	}
+	ft_printf("\n");	
 }
 
 void	print_map(void)

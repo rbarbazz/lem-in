@@ -6,11 +6,30 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 16:21:57 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/25 17:00:15 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/25 17:53:52 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+static void	print_one_line(t_lem *lem)
+{
+	t_path	*tmpp;
+	t_link	*tmpl;
+
+	tmpp = lem->path;
+	while (tmpp)
+	{
+		tmpl = tmpp->start->next;
+		while (tmpl && tmpl->ant != 0)
+		{
+			ft_printf("L%d-%s ", tmpl->ant, tmpl->room_link->name);
+			tmpl->ant++;
+			tmpl = tmpl->next;
+		}
+		tmpp = tmpp->next;
+	}
+}
 
 static void	get_count_path(t_lem *lem)
 {
@@ -24,11 +43,27 @@ static void	get_count_path(t_lem *lem)
 	}
 }
 
+static void	assign_ant_first_room(t_lem *lem)
+{
+	t_path	*tmpp;
+
+	tmpp = lem->path;
+	tmpp->start->next->ant = 1;
+	tmpp = tmpp->next;
+	while (tmpp)
+	{
+		if (lem->nb_ants /
+		tmpp->start->next->ant = ;
+		tmpp = tmpp->next;
+	}
+}
+
 void		print_ants(void)
 {
 	t_lem	*lem;
 
 	lem = get_lem();
 	get_count_path(lem);
-	ft_printf("nb valid path : %d", lem->nb_path);	
+	assign_ant_first_room(lem);
+	print_one_line(lem);
 }

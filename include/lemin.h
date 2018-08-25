@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/31 00:00:37 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/25 16:26:24 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/25 17:03:27 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 typedef struct			s_link
 {
 	struct s_room		*room_link;
+	int					ant;
 	struct s_link		*next;
 }						t_link;
 
