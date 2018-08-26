@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 13:13:26 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/25 20:22:19 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/26 14:50:41 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static t_link	*add_node(t_room *parent, t_path *path)
 		path->start = new;
 	else
 		tmpl->next = new;
+	new->prev = tmpl;
 	return (new);
 }
 
@@ -74,7 +75,6 @@ static int		find_path(t_path *path, t_lem *lem)
 
 	end_path = lem->start;
 	size = 0;
-	add_node(lem->start, path);
 	while (!end_path->parent->room_link->end)
 	{
 		tmpl = end_path->parent;

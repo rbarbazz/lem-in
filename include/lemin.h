@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/31 00:00:37 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/26 12:12:43 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/26 16:26:55 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct			s_path
 {
 	t_link				*start;
 	int					size;
+	unsigned int		ant_min;
 	unsigned int		ant_max;
 	struct s_path		*prev;
 	struct s_path		*next;
@@ -96,6 +97,9 @@ void					save_path(void);
 void					print_path(void);
 void					clear_visit(t_room *room);
 void					print_ants(void);
+void					assign_first_ant(t_lem *lem);
+void					assign_max_ant(t_lem *lem);
+void					move_ants(t_lem *lem);
 
 /*
 ** clearing memory
