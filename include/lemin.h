@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/31 00:00:37 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/26 18:19:23 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/26 19:24:20 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ void				move_ants(t_lem *lem);
 
 void				free_lem(void);
 void				free_node_map(t_lem *lem);
+void				free_path(t_path *path);
 void				clear_one_path(t_path *path);
 void				clear_visit(t_room *room);
 

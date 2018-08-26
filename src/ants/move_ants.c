@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/26 13:57:10 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/26 17:50:44 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/26 19:36:07 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	move_ants(t_lem *lem)
 }
 
 /*
-** assigns the max ant each path is handling
+** assigns the max ant to each path
 */
 
 void	assign_max_ant(t_lem *lem)

@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 16:21:57 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/26 18:14:27 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/26 19:37:44 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,16 @@ static int	print_one_line(t_lem *lem)
 static void	get_count_path(t_lem *lem)
 {
 	t_path	*tmpp;
+	int		i;
 
 	tmpp = lem->path;
+	i = 0;
 	while (tmpp)
 	{
-		lem->nb_path++;
+		i++;
 		tmpp = tmpp->next;
 	}
+	lem->nb_path = i;
 }
 
 void		print_ants(void)

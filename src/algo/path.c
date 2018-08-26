@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 13:13:26 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/26 18:19:33 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/26 19:46:13 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,15 +131,18 @@ static void		add_path(t_lem *lem)
 
 void			save_path(void)
 {
-	t_lem	*lem;
-	t_link	*pstart;
+	t_lem			*lem;
+	t_link			*pstart;
+	unsigned int	nb_path;
 
 	lem = get_lem();
+	nb_path = 0;
 	pstart = lem->start->parent;
 	clear_visit(lem->room);
-	while (pstart)
+	while (pstart && nb_path < lem->nb_ants)
 	{
 		add_path(lem);
+		nb_path++;
 		pstart = pstart->next;
 	}
 	remove_longer_path(lem);
