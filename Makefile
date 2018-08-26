@@ -6,7 +6,7 @@
 #    By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/19 10:38:52 by rbarbazz          #+#    #+#              #
-#    Updated: 2018/08/26 13:58:27 by rbarbazz         ###   ########.fr        #
+#    Updated: 2018/08/26 18:13:36 by rbarbazz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = lem-in
 
 SRC_PATH = src
 
-SRC_NAME =	main.c display.c\
+SRC_NAME =	main.c display.c init.c\
 			ants/ants.c ants/move_ants.c\
 			clear/clear.c clear/final_clear.c\
 			parsing/parsing.c parsing/get_rooms.c parsing/verif_rooms.c\

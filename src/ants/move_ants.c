@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/26 13:57:10 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/26 17:06:28 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/26 17:50:44 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,24 @@ void	move_ants(t_lem *lem)
 	t_link	*tmpl;
 
 	tmpp = lem->path;
-	while (tmpp)
+	while (tmpp && !tmpp->done)
 	{
 		tmpl = tmpp->start;
 		while (tmpl && tmpl->next && !tmpl->ant)
 			tmpl = tmpl->next;
-		while (tmpl && tmpl->ant)
+		while (tmpl)
 		{
-			if (tmpl->ant == tmpp->ant_max)
+			if (!tmpl->ant && tmpl->prev && tmpl->prev->ant)
+			{
+				tmpl->ant = tmpp->ant_min;
+				break ;
+			}
+			else if (tmpl->ant == tmpp->ant_max)
 				tmpl->ant = 0;
 			else
 				tmpl->ant++;
 			tmpl = tmpl->next;
 		}
-		if (tmpl)
-			tmpl->ant = tmpp->ant_min;
 		tmpp = tmpp->next;
 	}
 }

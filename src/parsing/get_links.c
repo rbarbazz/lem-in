@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 08:58:21 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/26 12:41:18 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/26 18:13:01 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 static void	add_link(t_room *room, t_room *room_link)
 {
-	t_link	*new;
+	t_link	*newl;
 	t_link	*tmpl;
 
 	tmpl = room->link;
@@ -31,19 +31,16 @@ static void	add_link(t_room *room, t_room *room_link)
 	tmpl = room->link;
 	while (tmpl && tmpl->next)
 		tmpl = tmpl->next;
-	if (!(new = (t_link*)ft_memalloc(sizeof(t_link))))
+	if (!(newl = (t_link*)ft_memalloc(sizeof(t_link))))
 	{
 		free_lem();
 		exit(1);
 	}
 	if (!room->link)
-		room->link = new;
+		room->link = newl;
 	else
-		tmpl->next = new;
-	new->room_link = room_link;
-	new->next = NULL;
-	new->ant = 0;
-	new->prev = tmpl;
+		tmpl->next = newl;
+	init_link(newl, room_link, tmpl);
 }
 
 /*

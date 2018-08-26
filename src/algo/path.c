@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 13:13:26 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/26 14:50:41 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/26 18:19:33 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,31 +101,27 @@ static int		find_path(t_path *path, t_lem *lem)
 
 static void		add_path(t_lem *lem)
 {
-	t_path	*new;
+	t_path	*newp;
 	t_path	*tmpp;
 
 	tmpp = lem->path;
 	while (tmpp && tmpp->next)
 		tmpp = tmpp->next;
-	if (!(new = (t_path*)ft_memalloc(sizeof(t_path))))
+	if (!(newp = (t_path*)ft_memalloc(sizeof(t_path))))
 	{
 		free_lem();
 		exit(1);
 	}
-	new->size = 0;
-	new->ant_max = 0;
-	new->start = NULL;
-	new->next = NULL;
-	new->prev = tmpp;
-	if (find_path(new, lem))
+	init_path(newp, tmpp);
+	if (find_path(newp, lem))
 	{
-		clear_one_path(new);
+		clear_one_path(newp);
 		return ;
 	}
 	if (!lem->path)
-		lem->path = new;
+		lem->path = newp;
 	else
-		tmpp->next = new;
+		tmpp->next = newp;
 }
 
 /*
