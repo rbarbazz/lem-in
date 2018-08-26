@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 16:21:57 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/25 21:34:20 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/26 12:42:50 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,6 @@ static int	print_one_line(t_lem *lem)
 	tmpp = lem->path;
 	while (tmpp)
 	{
-		tmpl = tmpp->start->next;
-		while (tmpl && tmpl->ant)
-		{
-			ft_printf("L%u-%s ", tmpl->ant, tmpl->room_link->name);
-			tmpl->ant++;
-			if (tmpl->room_link->end && tmpl->ant > lem->nb_ants)
-				return (0);
-			tmpl = tmpl->next;
-		}
-		if (tmpl)
-			tmpl->ant++;
 		tmpp = tmpp->next;
 	}
 	return (1);
@@ -51,10 +40,32 @@ static void	get_count_path(t_lem *lem)
 }
 
 /*
+** assigns the max ant each path is handling
+*/
+
+static void	assign_max_ant(t_lem *lem)
+{
+	t_path	*tmpp;
+	int		i;
+
+	i = lem->nb_path - 1;
+	tmpp = lem->path;
+	while (tmpp)
+	{
+		tmpp->ant_max = lem->nb_ants - (i * (lem->nb_ants / lem->nb_path));
+		if ((lem->nb_ants % lem->nb_path) && i == lem->nb_path)
+			tmpp->ant_max += (lem->nb_ants % lem->nb_path);
+		i--;
+		ft_printf("max->%u\n", tmpp->ant_max);
+		tmpp = tmpp->next;
+	}
+}
+
+/*
 ** assigns ant numbers to each path and the max ant they are handling
 */
 
-static void	assign_first_max(t_lem *lem)
+static void	assign_first_ant(t_lem *lem)
 {
 	t_path	*tmpp;
 	int		i;
@@ -63,15 +74,11 @@ static void	assign_first_max(t_lem *lem)
 	tmpp = lem->path;
 	while (tmpp)
 	{
-		if (!(lem->nb_ants % lem->nb_path))
-		{
-			tmpp->start->next->ant = lem->nb_ants + 1 - (i * (lem->nb_ants / lem->nb_path));
-			tmpp->ant_max = lem->nb_ants + 1 - ((i - 1) * (lem->nb_ants / lem->nb_path));
-		}
-		if ((lem->nb_ants % lem->nb_path))
-		{
-		}
+		tmpp->start->next->ant = 1 + lem->nb_ants - (i * (lem->nb_ants / lem->nb_path));
+		if ((lem->nb_ants % lem->nb_path) && i == lem->nb_path)
+			tmpp->start->next->ant -= (lem->nb_ants % lem->nb_path);
 		i--;
+		ft_printf("first->%u\n", tmpp->start->next->ant);
 		tmpp = tmpp->next;
 	}
 }
@@ -82,7 +89,9 @@ void		print_ants(void)
 
 	lem = get_lem();
 	get_count_path(lem);
-	assign_first_max(lem);
+	assign_first_ant(lem);
+	assign_max_ant(lem);
+	ft_printf("\n");
 	while (print_one_line(lem))
 		ft_printf("\n");
 }

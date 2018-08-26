@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 08:58:21 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/25 17:03:52 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/26 12:41:18 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@
 static void	add_link(t_room *room, t_room *room_link)
 {
 	t_link	*new;
-	t_link	*tmp;
+	t_link	*tmpl;
 
-	tmp = room->link;
-	while (tmp)
+	tmpl = room->link;
+	while (tmpl)
 	{
-		if (!ft_strcmp(room_link->name, tmp->room_link->name))
+		if (!ft_strcmp(room_link->name, tmpl->room_link->name))
 			return ;
-		tmp = tmp->next;
+		tmpl = tmpl->next;
 	}
-	tmp = room->link;
-	while (tmp && tmp->next)
-		tmp = tmp->next;
+	tmpl = room->link;
+	while (tmpl && tmpl->next)
+		tmpl = tmpl->next;
 	if (!(new = (t_link*)ft_memalloc(sizeof(t_link))))
 	{
 		free_lem();
@@ -39,11 +39,16 @@ static void	add_link(t_room *room, t_room *room_link)
 	if (!room->link)
 		room->link = new;
 	else
-		tmp->next = new;
+		tmpl->next = new;
 	new->room_link = room_link;
 	new->next = NULL;
 	new->ant = 0;
+	new->prev = tmpl;
 }
+
+/*
+** goes through the list of rooms to find the matching rooms
+*/
 
 static void	find_links(char **splited, t_lem *lem)
 {
