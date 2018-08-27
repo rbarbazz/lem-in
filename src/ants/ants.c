@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 16:21:57 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/27 11:55:25 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/27 12:46:15 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ static void	print_one_line(t_lem *lem)
 	t_link	*tmpl;
 
 	tmpp = lem->path;
-	while (tmpp)
+	while (tmpp && !tmpp->done)
 	{
 		tmpl = tmpp->start;
 		while (tmpl && tmpl->next)
 			tmpl = tmpl->next;
 		while (tmpl)
 		{
-			if (tmpl->ant && !tmpp->done)
+			if (tmpl->ant)
 				ft_printf("L%u-%s ", tmpl->ant, tmpl->room_link->name);
 			if (tmpl->ant == tmpp->ant_max && tmpl->room_link->end)
 				tmpp->done = 1;
