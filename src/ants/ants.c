@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 16:21:57 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/26 19:37:44 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/27 11:55:25 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	check_last(t_lem *lem)
 	return (1);
 }
 
-static int	print_one_line(t_lem *lem)
+static void	print_one_line(t_lem *lem)
 {
 	t_path	*tmpp;
 	t_link	*tmpl;
@@ -48,7 +48,6 @@ static int	print_one_line(t_lem *lem)
 		tmpp = tmpp->next;
 	}
 	ft_printf("\n");
-	return (1);
 }
 
 static void	get_count_path(t_lem *lem)
@@ -75,6 +74,9 @@ void		print_ants(void)
 	assign_first_ant(lem);
 	assign_max_ant(lem);
 	ft_printf("\n");
-	while (print_one_line(lem) && !check_last(lem))
+	while (!check_last(lem))
+	{
+		print_one_line(lem);
 		move_ants(lem);
+	}
 }

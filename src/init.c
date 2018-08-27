@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/26 18:08:13 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/26 18:19:45 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/27 11:54:53 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	init_link(t_link *newl, t_room *room_link, t_link *tmpl)
 {
 	newl->room_link = room_link;
 	newl->ant = 0;
+	newl->visit = 0;
 	newl->prev = tmpl;
 	newl->next = NULL;
 }

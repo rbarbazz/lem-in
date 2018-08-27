@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 13:13:26 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/26 19:46:13 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/27 12:00:35 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,25 +40,23 @@ static void		remove_longer_path(t_lem *lem)
 
 static t_link	*add_node(t_room *parent, t_path *path)
 {
-	t_link	*new;
+	t_link	*newl;
 	t_link	*tmpl;
 
 	tmpl = path->start;
 	while (tmpl && tmpl->next)
 		tmpl = tmpl->next;
-	if (!(new = (t_link*)ft_memalloc(sizeof(t_link))))
+	if (!(newl = (t_link*)ft_memalloc(sizeof(t_link))))
 	{
 		free_lem();
 		exit(1);
 	}
-	new->room_link = parent;
-	new->ant = 0;
 	if (!path->start)
-		path->start = new;
+		path->start = newl;
 	else
-		tmpl->next = new;
-	new->prev = tmpl;
-	return (new);
+		tmpl->next = newl;
+	init_link(newl, parent, tmpl);
+	return (newl);
 }
 
 /*

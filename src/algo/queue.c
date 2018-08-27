@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/21 19:53:04 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/25 16:18:00 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/27 12:03:06 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,30 +23,29 @@ void	remove_from_queue(t_lem *lem)
 
 void	add_parent(t_room *room, t_room *parent)
 {
-	t_link	*new;
-	t_link	*tmp;
+	t_link	*newl;
+	t_link	*tmpl;
 
-	tmp = room->parent;
-	while (tmp)
+	tmpl = room->parent;
+	while (tmpl)
 	{
-		if (!ft_strcmp(parent->name, tmp->room_link->name))
+		if (!ft_strcmp(parent->name, tmpl->room_link->name))
 			return ;
-		tmp = tmp->next;
+		tmpl = tmpl->next;
 	}
-	tmp = room->parent;
-	while (tmp && tmp->next)
-		tmp = tmp->next;
-	if (!(new = (t_link*)ft_memalloc(sizeof(t_link))))
+	tmpl = room->parent;
+	while (tmpl && tmpl->next)
+		tmpl = tmpl->next;
+	if (!(newl = (t_link*)ft_memalloc(sizeof(t_link))))
 	{
 		free_lem();
 		exit(1);
 	}
 	if (!room->parent)
-		room->parent = new;
+		room->parent = newl;
 	else
-		tmp->next = new;
-	new->room_link = parent;
-	new->next = NULL;
+		tmpl->next = newl;
+	init_link(newl, parent, tmpl);
 }
 
 /*

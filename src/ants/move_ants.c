@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/26 13:57:10 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/26 19:36:07 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/27 11:55:10 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,17 @@ void	move_ants(t_lem *lem)
 	while (tmpp && !tmpp->done)
 	{
 		tmpl = tmpp->start;
-		while (tmpl && tmpl->next && !tmpl->ant)
-			tmpl = tmpl->next;
 		while (tmpl)
 		{
-			if (!tmpl->ant && tmpl->prev && tmpl->prev->ant)
+			if (!tmpl->visit && tmpl->prev->visit)
 			{
 				tmpl->ant = tmpp->ant_min;
+				tmpl->visit = 1;
 				break ;
 			}
-			else if (tmpl->ant == tmpp->ant_max)
+			else if (tmpl->ant && tmpl->ant == tmpp->ant_max)
 				tmpl->ant = 0;
-			else
+			else if (tmpl->ant)
 				tmpl->ant++;
 			tmpl = tmpl->next;
 		}
@@ -63,6 +62,7 @@ void	assign_max_ant(t_lem *lem)
 
 /*
 ** assigns ant numbers to each path and the max ant they are handling
+** also set visit for first rooms to 1
 */
 
 void	assign_first_ant(t_lem *lem)
@@ -80,6 +80,7 @@ void	assign_first_ant(t_lem *lem)
 			tmpp->start->ant -= (lem->nb_ants % lem->nb_path);
 		i--;
 		tmpp->ant_min = tmpp->start->ant;
+		tmpp->start->visit = 1;
 		tmpp = tmpp->next;
 	}
 }
