@@ -6,13 +6,13 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/03 16:49:25 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/26 19:24:22 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/28 20:17:20 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void	free_path(t_path *path)
+void		free_path(t_path *path)
 {
 	t_path	*tmpp;
 

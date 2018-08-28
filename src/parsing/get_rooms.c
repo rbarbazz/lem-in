@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 01:08:30 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/28 16:36:53 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/28 20:16:40 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static int	check_room_syntax(char **splited)
 	return (0);
 }
 
-static int check_non_print(char *line)
+static int	check_non_print(char *line)
 {
 	int		i;
 	int		count;
