@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/12 19:47:25 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/15 17:49:12 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/28 16:21:48 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,13 @@ int				check_start_end(t_lem *lem)
 		tmp = tmp->next;
 	}
 	if (start_end[0] != 1 || start_end[1] != 1)
+		return (1);
+	return (0);
+}
+
+int				check_bigl_spaces(char *line)
+{
+	if (line && line[0] && (line[0] == 'L' || !ft_isprint(line[0])))
 		return (1);
 	return (0);
 }

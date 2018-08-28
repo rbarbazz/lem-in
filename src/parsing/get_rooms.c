@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 01:08:30 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/28 15:49:37 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/28 16:36:53 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,19 +72,20 @@ static int	check_room_syntax(char **splited)
 	return (0);
 }
 
-static void	get_start_end(t_lem *lem)
+static int check_non_print(char *line)
 {
-	t_room	*tmp;
+	int		i;
+	int		count;
 
-	tmp = lem->room;
-	while (tmp)
+	i = 0;
+	count = 0;
+	while (line && line[i])
 	{
-		if (tmp->start)
-			lem->start = tmp;
-		if (tmp->end)
-			lem->end = tmp;
-		tmp = tmp->next;
+		if (!ft_isprint(line[i]))
+			count++;
+		i++;
 	}
+	return (count);
 }
 
 /*
@@ -108,6 +109,8 @@ int			get_rooms(t_lem *lem)
 			strstr_free(splited);
 			break ;
 		}
+		if (check_room_syntax(splited) != 3 && check_non_print(tmp->line) != 2)
+			return (1);
 		add_node(splited, lem);
 		strstr_free(splited);
 		tmp = tmp->next;
@@ -115,6 +118,5 @@ int			get_rooms(t_lem *lem)
 	}
 	if (check_start_end(lem))
 		return (1);
-	get_start_end(lem);
 	return (0);
 }

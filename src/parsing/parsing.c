@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/04 16:27:04 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/23 17:30:16 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/28 16:24:58 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,30 @@ static int	get_nb_ants(t_lem *lem)
 	return (0);
 }
 
+static void	get_start_end(t_lem *lem)
+{
+	t_room	*tmp;
+
+	tmp = lem->room;
+	while (tmp)
+	{
+		if (tmp->start)
+			lem->start = tmp;
+		if (tmp->end)
+			lem->end = tmp;
+		tmp = tmp->next;
+	}
+}
+
 int			parse_map(void)
 {
 	t_lem	*lem;
 
 	lem = get_lem();
-	if (get_nb_ants(lem) || get_rooms(lem) || get_links(lem) < 1)
+	if (get_nb_ants(lem) || get_rooms(lem))
+		return (1);
+	get_start_end(lem);
+	if (get_links(lem) < 1)
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/03 17:27:35 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/28 15:48:30 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/28 16:21:40 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,6 @@ static void		add_node(char *line)
 	else
 		tmp->next = new;
 	new->next = NULL;
-}
-
-int				check_bigl_spaces(char *line)
-{
-	if (line && line[0] && (line[0] == 'L' || !ft_isprint(line[0])))
-		return (1);
-	return (0);
 }
 
 /*
