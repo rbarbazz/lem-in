@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/03 17:27:35 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/16 12:30:00 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/28 15:48:30 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static void		add_node_full(char *line)
 	tmp = lem->full_map;
 	while (tmp && tmp->next)
 		tmp = tmp->next;
-	if (!(new = (t_map*)ft_memalloc(sizeof(t_map))))
+	if (!(new = (t_map*)ft_memalloc(sizeof(t_map))) ||\
+	!(new->line = ft_strdup(line)))
 	{
 		free_lem();
 		exit(1);
@@ -31,7 +32,6 @@ static void		add_node_full(char *line)
 		lem->full_map = new;
 	else
 		tmp->next = new;
-	new->line = ft_strdup(line);
 	new->next = NULL;
 }
 
@@ -45,7 +45,8 @@ static void		add_node(char *line)
 	tmp = lem->map;
 	while (tmp && tmp->next)
 		tmp = tmp->next;
-	if (!(new = (t_map*)ft_memalloc(sizeof(t_map))))
+	if (!(new = (t_map*)ft_memalloc(sizeof(t_map))) ||\
+	!(new->line = ft_strdup(line)))
 	{
 		free_lem();
 		exit(1);
@@ -54,11 +55,10 @@ static void		add_node(char *line)
 		lem->map = new;
 	else
 		tmp->next = new;
-	new->line = ft_strdup(line);
 	new->next = NULL;
 }
 
-static int		check_bigl_spaces(char *line)
+int				check_bigl_spaces(char *line)
 {
 	if (line && line[0] && (line[0] == 'L' || !ft_isprint(line[0])))
 		return (1);
@@ -94,8 +94,6 @@ int				store_map(void)
 	lem = get_lem();
 	while (get_next_line(STDIN_FILENO, &line) == 1)
 	{
-		if (check_bigl_spaces(line))
-			return (1);
 		if (!check_comment(line))
 			add_node(line);
 		add_node_full(line);

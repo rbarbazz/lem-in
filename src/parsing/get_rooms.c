@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 01:08:30 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/21 19:57:42 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/28 15:49:37 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ static void	add_node(char **splited, t_lem *lem)
 	tmp = lem->room;
 	while (tmp && tmp->next)
 		tmp = tmp->next;
-	if (!(new = (t_room*)ft_memalloc(sizeof(t_room))))
+	if (!(new = (t_room*)ft_memalloc(sizeof(t_room))) ||\
+	!(new->name = ft_strdup(splited[0])))
 	{
 		free_lem();
 		exit(1);
@@ -40,7 +41,6 @@ static void	add_node(char **splited, t_lem *lem)
 		lem->room = new;
 	else
 		tmp->next = new;
-	new->name = ft_strdup(splited[0]);
 	new->prev = tmp;
 	init_node(new);
 }
@@ -101,7 +101,7 @@ int			get_rooms(t_lem *lem)
 	{
 		if (!(splited = strsplit_whitespace(tmp->line)) ||\
 		check_room_syntax(splited) == 1 || (!check_room_syntax(splited) &&\
-		check_duplicate(splited)))
+		check_duplicate(splited)) || check_bigl_spaces(tmp->line))
 			return (1);
 		if (check_room_syntax(splited) == 2)
 		{

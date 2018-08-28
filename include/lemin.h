@@ -6,7 +6,7 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/31 00:00:37 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/27 11:54:30 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/28 13:45:27 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int					store_map(void);
 int					parse_map(void);
 int					get_rooms(t_lem	*lem);
 int					check_start_end(t_lem *lem);
+int					check_bigl_spaces(char *line);
 int					check_duplicate(char **splited);
 int					get_links(t_lem *lem);
 void				get_shortest_size(t_lem *lem);
@@ -96,7 +97,6 @@ void				add_parent(t_room *room, t_room *parent);
 
 void				print_map(void);
 void				save_path(void);
-void				print_path(void);
 void				print_ants(void);
 void				assign_first_ant(t_lem *lem);
 void				assign_max_ant(t_lem *lem);

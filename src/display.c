@@ -6,36 +6,11 @@
 /*   By: rbarbazz <rbarbazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/03 20:13:53 by rbarbazz          #+#    #+#             */
-/*   Updated: 2018/08/26 18:05:59 by rbarbazz         ###   ########.fr       */
+/*   Updated: 2018/08/28 12:47:42 by rbarbazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
-
-void	print_path(void)
-{
-	t_lem	*lem;
-	t_path	*tmpp;
-	t_link	*tmpl;
-
-	lem = get_lem();
-	tmpp = lem->path;
-	ft_printf("\n");
-	while (tmpp)
-	{
-		tmpl = tmpp->start;
-		while (tmpl)
-		{
-			ft_printf("%s ", tmpl->room_link->name);
-			tmpl = tmpl->next;
-			if (tmpl)
-				ft_printf("-> ");
-		}
-		ft_printf("\n");
-		tmpp = tmpp->next;
-	}
-	ft_printf("\n");
-}
 
 void	print_map(void)
 {
