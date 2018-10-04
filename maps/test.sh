@@ -1,0 +1,1 @@
+for file in *; do ../../lem-in < $file; printf $file; printf "\n"; done | grep -A 1 ERROR
